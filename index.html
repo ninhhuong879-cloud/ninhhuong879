@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人簡介 | LinkedIn 風格</title>
+    <style>
+        /* 基礎樣式重置 */
+        body, h1, h2, h3, h4, p, ul, li {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+        }
+
+        body {
+            background-color: #f3f2f1; /* LinkedIn 背景色 */
+            color: #1d1d1d;
+            line-height: 1.5;
+            padding-bottom: 50px;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1128px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 卡片通用樣式 */
+        .card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.05), 0 2px 3px rgba(0,0,0,0.1);
+        }
+
+        /* 頂部 Header/Banner 卡片 */
+        .profile-header {
+            position: relative;
+        }
+
+        .banner {
+            height: 200px;
+            background: linear-gradient(135deg, #a0b4b7 0%, #d8e2dc 100%); /* 預設漸層背景 */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .profile-info {
+            padding: 0 24px 24px 24px;
+            position: relative;
+        }
+
+        /* ========================================= */
+        /* 【核心修改：你的個人相片樣式】 */
+        /* ========================================= */
+        .profile-pic-container {
+            width: 160px;
+            height: 160px;
+            position: absolute;
+            top: -110px; /* 向上偏移，半個頭像蓋在 banner 上 */
+            left: 24px;
+            border-radius: 50%;
+            border: 4px solid #ffffff;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            overflow: hidden; /* 確保圖片保持圓形 */
+            z-index: 10;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 關鍵：圖片會自動裁切填滿圓形，不變形 */
+        }
+
+        .profile-meta {
+            padding-top: 60px; /* 為頭像預留空間 */
+        }
+
+        .name {
+            font-size: 24px;
+            font-weight: 600;
+            color: rgba(0,0,0,0.9);
+        }
+
+        .headline {
+            font-size: 16px;
+            color: rgba(0,0,0,0.9);
+            margin-top: 4px;
+        }
+
+        .location-contact {
+            font-size: 14px;
+            color: rgba(0,0,0,0.6);
+            margin-top: 8px;
+        }
+
+        /* 段落通用標題 */
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: rgba(0,0,0,0.9);
+            padding: 24px 24px 0 24px;
+        }
+
+        .section-content {
+            padding: 16px 24px 24px 24px;
+            font-size: 14px;
+            color: rgba(0,0,0,0.9);
+        }
+
+        /* 經歷與學歷項目 */
+        .entry-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .entry-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .logo-placeholder {
+            width: 48px;
+            height: 48px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 10px;
+            flex-shrink: 0;
+        }
+
+        .entry-details h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: rgba(0,0,0,0.9);
+        }
+
+        .entry-details .subtitle {
+            font-size: 14px;
+            color: rgba(0,0,0,0.9);
+        }
+
+        .entry-details .date-location {
+            font-size: 14px;
+            color: rgba(0,0,0,0.6);
+            margin-bottom: 8px;
+        }
+
+        /* 技能標籤 */
+        .skills-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background-color: rgba(0,0,0,0.08);
+            color: rgba(0,0,0,0.7);
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+        .skill-tag:hover {
+            background-color: rgba(0,0,0,0.15);
+            color: rgba(0,0,0,0.9);
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header class="card profile-header">
+        <div class="banner">
+            </div>
+        <div class="profile-info">
+            
+            <div class="profile-pic-container">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NiA5NiI++PC9zdmc+" alt="個人相片" class="profile-pic">
+            </div>
+
+            <div class="profile-meta">
+                <h1 class="name">你的名字</h1>
+                <p class="headline">專業職稱 | 核心技能標籤 | 行業</p>
+                <p class="location-contact">
+                    台北市，台灣 • 
+                    <a href="mailto:your.email@email.com" style="color:#0a66c2; text-decoration:none;">your.email@email.com</a>
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <section class="card">
+        <h2 class="section-title">關於</h2>
+        <div class="section-content">
+            <p>
+                在這裡用簡短的段落介紹你的專業背景、核心競爭力、熱情所在，以及你解決問題的能力。這就像是你的電梯簡報。
+                例如：擁有 [X] 年 [行業] 經驗的 [職稱]，專長於 [技能A] 和 [技能B]。曾成功帶領團隊完成 [專案類型]，
+                並具備卓越的跨部門溝通與戰略思考能力。
+            </p>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2 class="section-title">體驗</h2>
+        <div class="section-content">
+            
+            <div class="entry-item">
+                <div class="logo-placeholder">LOGO</div>
+                <div class="entry-details">
+                    <h3>職位名稱</h3>
+                    <p class="subtitle">公司名稱 • 全職</p>
+                    <p class="date-location">2022年 1月 - 至今 • 1年 10個月</p>
+                    <p>責任與成就：</p>
+                    <ul style="margin-left: 20px;">
+                        <li>具體量化成就 (例如：提升流量 30%)</li>
+                        <li>負責的主要專案或日常職責。</li>
+                        <li>使用的技術或管理方法。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #e0e0e0; margin: 20px 0;">
+
+            <div class="entry-item">
+                <div class="logo-placeholder">LOGO</div>
+                <div class="entry-details">
+                    <h3>前職位名稱</h3>
+                    <p class="subtitle">前公司名稱</p>
+                    <p class="date-location">2020年 1月 - 2021年 12月 • 2年</p>
+                </div>
+            </div>
+
+        </div>
+    </section
